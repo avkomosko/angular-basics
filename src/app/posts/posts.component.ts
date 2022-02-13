@@ -7,5 +7,5 @@ import {PostsService} from '../services/post.service'
   styleUrls: ['./posts.component.scss']
 })
 export class PostsComponent {
-  constructor(private postsService: PostsService) {}
+  constructor(public postsService: PostsService) {}
 }
