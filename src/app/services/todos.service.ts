@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, delay } from 'rxjs/operators';
@@ -9,7 +9,11 @@ export class TodoService {
   constructor(private http: HttpClient) {}
 
   addTodo(todo: Todo): Observable<Todo> {
-    return this.http.post<Todo>('https://jsonplaceholder.typicode.com/todos', todo);
+    return this.http.post<Todo>('https://jsonplaceholder.typicode.com/todos', todo, {
+      headers: new HttpHeaders({
+        'MycustomHeader': Math.random().toString()
+      })
+    });
   }
 
   fetchTodos(): Observable<Todo[]> {
@@ -28,7 +32,7 @@ export class TodoService {
   }
 
   completeTodo(id: number): Observable<Todo> {
-    return this.http.put<Todo>(`https://jsonplaceholder.typicode.com/todos/${id}`, {
+    return this.http.patch<Todo>(`https://jsonplaceholder.typicode.com/todos/${id}`, {
       completed: true
     });
   }
