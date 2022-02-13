@@ -1,3 +1,4 @@
+import { ErrorPageComponent } from './error-page/error-page.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AboutExtraComponent } from './about-extra/about-extra.component';
@@ -13,6 +14,8 @@ const routes: Routes = [
   ]},
   {path: 'posts', component: PostsComponent},
   {path: 'posts/:id', component: PostComponent},
+  {path: 'error', component: ErrorPageComponent},
+  {path: '**', redirectTo: '/error'},
 ];
 
 @NgModule({
