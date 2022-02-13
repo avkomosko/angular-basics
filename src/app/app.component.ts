@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Todo } from './models/app.interfaces';
-import { TodoService } from './services/todos.services';
+import { TodoService } from './services/todos.service';
 
 @Component({
   selector: 'app-root',
@@ -52,5 +52,13 @@ export class AppComponent implements OnInit {
       .subscribe(() => {
         this.todos = this.todos.filter(t => t.id !== id);
       });
+  }
+
+  completeTodo(id: number) {
+    this.TodoService.completeTodo(id)
+      .subscribe((todo) => {
+        console.log(todo);
+        this.todos.find(t => t.id === todo.id)!.completed = true;
+      })
   }
 }
